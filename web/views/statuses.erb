@@ -1,7 +1,7 @@
 <% require 'cgi'; def h(v); CGI.escape_html(v.to_s); end %>
 <%= style_tag "statuses/stylesheets/styles.css" %>
 <%= script_tag "statuses/javascripts/scripts.js" %>
-<div style="display: flex; justify-content: space-between;">
+<div class="status-header">
   <h3 class="wi">Recent job statuses</h3>
   <div class="nav-container">
     <%= erb :_paging, locals: { url: "#{root_path}statuses" } %>
@@ -43,11 +43,11 @@
       <td>
         <div class='args' title='<%= h container["jid"] %>'><%= h container["args"] %></div>
       </td>
-      <td style='text-align: center;'>
+      <td class="text-center">
         <div class='label label-<%= h container["label"] %>'><%= h container["status"] %></div>
       </td>
       <% secs = Time.now.to_i - container["update_time"].to_i %>
-      <td style='text-align: center; white-space: nowrap;' title="<%= Time.at(container["update_time"].to_i) %>">
+      <td class="text-center-nowrap" title="<%= Time.at(container["update_time"].to_i) %>">
         <% if secs > 0 %>
           <%= ChronicDuration.output(secs, :weeks => true, :units => 2) %> ago
         <% else %>
@@ -55,8 +55,8 @@
         <% end %>
       </td>
       <td>
-        <div class="progress progress-striped" style="margin-bottom: 0">
-          <div class='message' style='text-align:right; padding-right:0.5em; background-color: transparent; float:right;'>
+        <div class="progress progress-striped progress-inline">
+          <div class='message message-overlay'>
             <%= h container["message"] %>
           </div>
           <% if container["pct_complete"].to_i > 0 %>
@@ -66,12 +66,12 @@
           <% end %>
         </div>
       </td>
-      <td style='text-align: center; white-space: nowrap;'>
+      <td class="text-center-nowrap">
         <% if container["elapsed"] %>
           <%= ChronicDuration.output(container["elapsed"].to_i, :weeks => true, :units => 2) %>
         <% end %>
       </td>
-      <td style='text-align: center; white-space: nowrap;'>
+      <td class="text-center-nowrap">
         <% if container["eta"] %>
           <%= ChronicDuration.output(container["eta"].to_i, :weeks => true, :units => 2) %>
         <% end %>
