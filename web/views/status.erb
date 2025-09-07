@@ -2,7 +2,7 @@
 <%= style_tag "statuses/stylesheets/styles.css" %>
 <h3>
   Job Status: <%= h @status["jid"] %>
-  <span class='label label-<%= h @status["label"] %>'>
+  <span class='label-<%= h @status["label"] %>'>
     <%= h @status["status"] %>
   </span>
 </h3>
