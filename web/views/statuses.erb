@@ -63,7 +63,7 @@
             <%= h container["message"] %>
           </div>
           <% if container["pct_complete"].to_i > 0 %>
-            <div class="bar message" style="width: <%= h container["pct_complete"] %>%;">
+            <div class="progress-bar message" data-width="<%= h container["pct_complete"] %>">
               <%= h container["pct_complete"] %>%
             </div>
           <% end %>

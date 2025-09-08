@@ -10,10 +10,8 @@
   </header>
 
   <div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @status["pct_complete"].to_i %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @status["pct_complete"].to_i %>%">
-    <div class="progress-percentage">
-      <%= @status["pct_complete"].to_i %>%
-    </div>
+  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @status["pct_complete"].to_i %>" aria-valuemin="0" aria-valuemax="100" data-width="<%= @status["pct_complete"].to_i %>">
+    <%= @status["pct_complete"].to_i %>%
   </div>
   </div>
 
