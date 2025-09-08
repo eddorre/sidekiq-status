@@ -28,16 +28,18 @@
 
   <div class="table_container">
     <table>
-  <tr>
-    <% @headers.each do |hdr| %>
-      <th class="header <%= h hdr[:class] %> header_<%= h hdr[:id] %>">
-        <a href="<%= h hdr[:url] %>"><%= h hdr[:name] %></a>
+  <thead>
+    <tr>
+      <% @headers.each do |hdr| %>
+        <th>
+          <a href="<%= h hdr[:url] %>"><%= h hdr[:name] %></a>
+        </th>
+      <% end %>
+      <th>
+        Actions
       </th>
-    <% end %>
-    <th class="header">
-      Actions
-    </th>
-  </tr>
+    </tr>
+  </thead>
   <% @statuses.each do |container| %>
     <tr>
       <td>
