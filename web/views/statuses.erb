@@ -48,7 +48,7 @@
       <td>
         <div title='<%= h container["jid"] %>'><%= h container["args"] %></div>
       </td>
-      <td class="text-center">
+      <td>
         <div class='label-<%= h container["label"] %>'><%= h container["status"] %></div>
       </td>
       <% secs = Time.now.to_i - container["update_time"].to_i %>
@@ -82,8 +82,7 @@
         <% end %>
       </td>
       <td>
-        <div class="actions">
-          <form action="statuses" method="post">
+        <form action="statuses" method="post">
             <input type="hidden" name="jid" value="<%= h container["jid"] %>" />
             <%= csrf_tag %>
             <% if container["status"] == "complete" %>
@@ -93,8 +92,7 @@
               <input type="hidden" name="_method" value="put" />
               <input type="submit" class="btn btn-warn" value="Retry Now" />
             <% end %>
-          </form>
-        </div>
+        </form>
       </td>
     </tr>
   <% end %>
