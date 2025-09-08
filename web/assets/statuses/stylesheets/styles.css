@@ -35,31 +35,6 @@
 .btn-warning {
   background-image: linear-gradient(#f0ad4e, #eea236)
 }
-.nav-container {
-  display: flex;
-  line-height: 45px;
-}
-.nav-container .pull-right {
-  float: none !important;
-}
-.nav-container .pagination {
-  display: flex;
-  align-items: center;
-}
-.nav-container .per-page, .filter-status {
-  display: flex;
-  align-items: center;
-  margin: 20px 0 20px 10px;
-  white-space: nowrap;
-}
-.nav-container .per-page SELECT {
-  margin: 0 0 0 5px;
-}
-
-.status-header {
-  display: flex;
-  justify-content: space-between;
-}
 
 .text-center {
   text-align: center;
