@@ -1,30 +1,34 @@
 <% require 'cgi'; def h(v); CGI.escape_html(v.to_s); end %>
-<%= style_tag "statuses/stylesheets/styles.css" %>
+<% style_tag "statuses/stylesheets/styles.css" %>
 <%= script_tag "statuses/javascripts/scripts.js" %>
-<div class="status-header">
-  <h3 class="wi">Recent job statuses</h3>
-  <div class="nav-container">
-    <%= erb :_paging, locals: { url: "#{root_path}statuses" } %>
-    <div class="filter-status">
-      Filter Status:
-      <select class="form-control" onchange="handleStatusesSelectChange(this)">
-        <% (['all', 'complete', 'failed', 'interrupted', 'queued', 'retrying', 'stopped', 'working']).each do |status| %>
-          <option data-url="?<%= qparams(status: status)%>" value="<%= status %>" <%= 'selected="selected"' if status == (safe_url_params("status")) %>><%= status %></option>
-        <% end %>
-      </select>
+<section>
+  <header>
+    <h1>Recent job statuses</h1>
+    <div class="filter">
+      <form class="form-inline" method="get">
+        <label>Filter Status:</label>
+        <select class="form-control" name="status" onchange="this.form.submit()">
+          <% (['all', 'complete', 'failed', 'interrupted', 'queued', 'retrying', 'stopped', 'working']).each do |status| %>
+            <option value="<%= status %>" <%= 'selected' if status == (safe_url_params("status") || 'all') %>><%= status %></option>
+          <% end %>
+        </select>
+
+        <label>Per page:</label>
+        <select class="form-control" name="per_page" onchange="this.form.submit()">
+          <% (Sidekiq::Status::Web.per_page_opts + ['all']).each do |num| %>
+            <option value="<%= num %>" <%= 'selected' if num.to_s == (safe_url_params("per_page") || @count) %>><%= num %></option>
+          <% end %>
+        </select>
+
+        <input type="hidden" name="page" value="1">
+      </form>
     </div>
 
-    <div class="per-page">
-      Per page:
-      <select class="form-control" onchange="handleStatusesSelectChange(this)">
-        <% (Sidekiq::Status::Web.per_page_opts + ['all']).each do |num| %>
-        <option data-url="?<%= qparams(page: 1, per_page: num)%>" value="<%= num %>" <%= 'selected="selected"' if num.to_s == (safe_url_params("per_page") || @count) %>><%= num %></option>
-        <% end %>
-      </select>
-    </div>
-  </div>
-</div>
-<table class="table table-hover table-bordered table-striped">
+    <%= erb :_paging, locals: { url: "#{root_path}statuses" } %>
+  </header>
+
+  <div class="table_container">
+    <table>
   <tr>
     <% @headers.each do |hdr| %>
       <th class="header <%= h hdr[:class] %> header_<%= h hdr[:id] %>">
@@ -41,7 +45,7 @@
         <div title='<%= h container["jid"] %>'><a href="<%= root_path %>statuses/<%= h container["jid"] %>"><%= h container["worker"] %></a></div>
       </td>
       <td>
-        <div class='args' title='<%= h container["jid"] %>'><%= h container["args"] %></div>
+        <div title='<%= h container["jid"] %>'><%= h container["args"] %></div>
       </td>
       <td class="text-center">
         <div class='label-<%= h container["label"] %>'><%= h container["status"] %></div>
@@ -83,10 +87,10 @@
             <%= csrf_tag %>
             <% if container["status"] == "complete" %>
               <input type="hidden" name="_method" value="delete" />
-              <input type="submit" class="btn btn-danger btn-xs" value="Remove" />
+              <input type="submit" class="btn btn-danger" value="Remove" />
             <% elsif container["status"] == "failed" %>
               <input type="hidden" name="_method" value="put" />
-              <input type="submit" class="btn btn-warning btn-xs" value="Retry Now" />
+              <input type="submit" class="btn btn-warning" value="Retry Now" />
             <% end %>
           </form>
         </div>
@@ -98,4 +102,6 @@
       <td colspan="6"></td>
     </tr>
   <% end %>
-</table>
+    </table>
+  </div>
+</section>
