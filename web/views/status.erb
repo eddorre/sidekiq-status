@@ -1,21 +1,24 @@
 <% require 'cgi'; def h(v); CGI.escape_html(v.to_s); end %>
-<%= style_tag "statuses/stylesheets/styles.css" %>
-<h3>
-  Job Status: <%= h @status["jid"] %>
-  <span class='label-<%= h @status["label"] %>'>
-    <%= h @status["status"] %>
-  </span>
-</h3>
+<% style_tag "statuses/stylesheets/styles.css" %>
+<section>
+  <header>
+    <h1>
+      Job Status: <%= h @status["jid"] %>
+      <span class='label-<%= h @status["label"] %>'>
+        <%= h @status["status"] %>
+      </span>
+    </h1>
+  </header>
 
-<div class="progress">
+  <div class="progress">
   <div class="progress-bar" role="progressbar" aria-valuenow="<%= @status["pct_complete"].to_i %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @status["pct_complete"].to_i %>%">
     <div class="progress-percentage">
       <%= @status["pct_complete"].to_i %>%
     </div>
   </div>
-</div>
+  </div>
 
-<div class="container">
+  <div class="container">
     <h4><%= h @status["worker"] %></h4>
 
     <p><strong>Arguments:</strong> <%= @status["args"].empty? ? "<i>none</i>" : h(@status["args"]) %></p>
@@ -55,8 +58,9 @@
         </p>
       <% end %>
     <% end %>
-</div>
+  </div>
 
-<a href="<%= root_path %>statuses">
-  <small>&larr; back to all statuses</small>
-</a>
+  <a href="<%= root_path %>statuses">
+    <small>&larr; back to all statuses</small>
+  </a>
+</section>
