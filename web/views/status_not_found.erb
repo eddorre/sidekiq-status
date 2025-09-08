@@ -1,4 +1,3 @@
-<% require 'cgi'; def h(v); CGI.escape_html(v.to_s); end %>
 <section>
   <header>
     <h1>Job Status: <%= h safe_url_params("jid") %></h1>
