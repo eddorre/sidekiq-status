@@ -7,16 +7,16 @@
     <div class="filter">
       <form class="form-inline" method="get">
         <label>Filter Status:</label>
-        <select class="form-control" name="status" onchange="this.form.submit()">
+        <select class="form-control" id="sidekiq-status-select-status-name" name="status">
           <% (['all', 'complete', 'failed', 'interrupted', 'queued', 'retrying', 'stopped', 'working']).each do |status| %>
-            <option value="<%= status %>" <%= 'selected' if status == (safe_url_params("status") || 'all') %>><%= status %></option>
+            <option data-url="?<%= qparams(status: status)%>" value="<%= status %>" <%= 'selected' if status == (safe_url_params("status") || 'all') %>><%= status %></option>
           <% end %>
         </select>
 
         <label>Per page:</label>
-        <select class="form-control" name="per_page" onchange="this.form.submit()">
+        <select class="form-control" id="sidekiq-status-select-per-page" name="per_page">
           <% (Sidekiq::Status::Web.per_page_opts + ['all']).each do |num| %>
-            <option value="<%= num %>" <%= 'selected' if num.to_s == (safe_url_params("per_page") || @count) %>><%= num %></option>
+            <option data-url="?<%= qparams(page: 1, per_page: num)%>" value="<%= num %>" <%= 'selected' if num.to_s == (safe_url_params("per_page") || @count) %>><%= num %></option>
           <% end %>
         </select>
 
