@@ -1,43 +1,8 @@
-.progress {
-  background-color: #C8E1ED;
-}
-.progress-percentage {
-  margin: 5px;
-  padding-left: 4px;
-  color: #333;
-  text-align: left;
-  text-shadow: 0 0 5px white;
-  font-weight: bold;
-  font-size: 14px;
-}
-.bar {
-  background-color: #2897cb;
-  color: white;
-  text-shadow: 0 0 0;
-}
 .message {
   text-shadow: 0 0 5px white;
-  font-weight: bold; padding-left: 4px;
+  font-weight: bold;
+  padding-left: 4px;
   color: #333;
-}
-.actions {
-  text-align: center;
-}
-.header {
-  text-align: center;
-}
-.header_update_time {
-  width: 10%;
-}
-.header_pct_complete {
-  width: 45%;
-}
-.btn-warning {
-  background-image: linear-gradient(#f0ad4e, #eea236)
-}
-
-.text-center {
-  text-align: center;
 }
 
 .text-center-nowrap {
