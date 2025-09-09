@@ -47,7 +47,7 @@
       </td>
       <td>
         <div title='<%= h container["jid"] %>'>
-          <code><div class="args"><%= display_args(Array(h(container["args"]))) %></div></code>
+          <code><div class="args"><%= h(container["args"] %></div></code>
         </div>
       </td>
       <td>
@@ -61,7 +61,7 @@
           Now
         <% end %>
       </td>
-      <td>
+      <td class="text-center-nowrap">
         <div class="progress progress-striped progress-inline">
           <div class='message message-overlay'>
             <%= h container["message"] %>
