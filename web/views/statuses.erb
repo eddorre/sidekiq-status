@@ -31,7 +31,7 @@
   <thead>
     <tr>
       <% @headers.each do |hdr| %>
-        <th>
+        <th class="<%= ['status', 'last_updated', 'pct_complete', 'elapsed', 'eta'].include?(hdr[:id]) ? 'text-center-nowrap' : '' %>">
           <a href="<%= h hdr[:url] %>"><%= h hdr[:name] %></a>
         </th>
       <% end %>
@@ -50,7 +50,7 @@
           <code><div class="args"><%= h(container["args"] %></div></code>
         </div>
       </td>
-      <td>
+      <td class="text-center-nowrap">
         <div class='label label-<%= h container["label"] %>'><%= h container["status"] %></div>
       </td>
       <% secs = Time.now.to_i - container["update_time"].to_i %>
