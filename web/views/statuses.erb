@@ -31,7 +31,7 @@
   <thead>
     <tr>
       <% @headers.each do |hdr| %>
-        <th class="<%= ['status', 'last_updated', 'pct_complete', 'elapsed', 'eta'].include?(hdr[:id]) ? 'text-center-nowrap' : '' %>">
+        <th class="<%= ['status', 'update_time', 'pct_complete', 'elapsed', 'eta'].include?(hdr[:id]) ? 'text-center-nowrap' : '' %>">
           <a href="<%= h hdr[:url] %>"><%= h hdr[:name] %></a>
         </th>
       <% end %>
