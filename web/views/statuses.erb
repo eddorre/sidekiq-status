@@ -46,7 +46,9 @@
         <div title='<%= h container["jid"] %>'><a href="<%= root_path %>statuses/<%= h container["jid"] %>"><%= h container["worker"] %></a></div>
       </td>
       <td>
-        <div title='<%= h container["jid"] %>'><%= h container["args"] %></div>
+        <div title='<%= h container["jid"] %>'>
+          <code><div class="args"><%= display_args(h(container["args"])) %></div></code>
+        </div>
       </td>
       <td>
         <div class='label-<%= h container["label"] %>'><%= h container["status"] %></div>
