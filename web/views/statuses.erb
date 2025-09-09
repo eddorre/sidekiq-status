@@ -51,7 +51,7 @@
         </div>
       </td>
       <td>
-        <div class='label-<%= h container["label"] %>'><%= h container["status"] %></div>
+        <div class='label label-<%= h container["label"] %>'><%= h container["status"] %></div>
       </td>
       <% secs = Time.now.to_i - container["update_time"].to_i %>
       <td class="text-center-nowrap" title="<%= Time.at(container["update_time"].to_i) %>">
