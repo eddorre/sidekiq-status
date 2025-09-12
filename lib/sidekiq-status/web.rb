@@ -127,7 +127,7 @@ module Sidekiq::Status
 end
 
 unless defined?(Sidekiq::Web)
-  require 'delegate' # Needed for sidekiq 5.x
+  require 'delegate'
   require 'sidekiq/web'
 end
 
@@ -149,7 +149,6 @@ if Sidekiq.major_version > 6
 else
   Sidekiq::Web.register(Sidekiq::Status::Web)
   if Sidekiq::Web.tabs.is_a?(Array)
-    # For sidekiq < 2.5
     Sidekiq::Web.tabs << "statuses"
   else
     Sidekiq::Web.tabs["Statuses"] = "statuses"
