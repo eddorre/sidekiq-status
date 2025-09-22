@@ -101,7 +101,7 @@ module Sidekiq::Status
 
       # Handles POST requests with method override for statuses
       app.post '/statuses' do
-        case params[:_method]
+        case safe_url_params("_method")
         when 'put'
           # Retries a failed job from the status list
           retry_job_action
