@@ -15,7 +15,7 @@
 </h3>
 
 <div class="progress h-30px">
-  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @status["pct_complete"].to_i %>" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" role="progressbar" data-width="<%= @status["pct_complete"].to_i %>" aria-valuenow="<%= @status["pct_complete"].to_i %>" aria-valuemin="0" aria-valuemax="100">
     <div class="progress-percentage fs-lg">
       <%= @status["pct_complete"].to_i %>%
     </div>
